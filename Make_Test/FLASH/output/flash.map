@@ -1,0 +1,271 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x08000000         0x00080000         xr
+RESULT_SRAM      0x20000000         0x00000004         xrw
+SRAM             0x20000004         0x00017ffc         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00000400                __max_heap_size = 0x400
+                0x00000200                __max_stack_size = 0x200
+
+.text           0x08000000      0x3f4
+ *(.isr_vector)
+ .isr_vector    0x08000000       0x54 ../output/stm32_startup.o
+                0x08000000                vectors
+ *(.text)
+ .text          0x08000054      0x28c ../output/flash.o
+                0x08000054                Flash_Init
+                0x08000070                Flash_Unlock
+                0x08000094                Flash_Lock
+                0x080000b0                Flash_Erase
+                0x0800010c                Flash_Write
+                0x080001ac                Flash_Read
+                0x080001fa                GetSector
+ .text          0x080002e0        0xe ../output/flash_TS_001.o
+                0x080002e0                main
+ *fill*         0x080002ee        0x2 
+ .text          0x080002f0       0x48 ../output/flash_TC_001.o
+                0x080002f0                flash_TC_001
+ .text          0x08000338       0x28 ../output/result.o
+                0x08000338                CHECK_RESULT
+ .text          0x08000360       0x8c ../output/stm32_startup.o
+                0x08000360                Reset_Handler
+                0x080003e4                HASH_RNG_IRQHandler
+                0x080003e4                EXTI2_IRQHandler
+                0x080003e4                TIM8_CC_IRQHandler
+                0x080003e4                DebugMon_Handler
+                0x080003e4                TIM1_CC_IRQHandler
+                0x080003e4                DMA2_Stream5_IRQHandler
+                0x080003e4                HardFault_Handler
+                0x080003e4                DMA1_Stream5_IRQHandler
+                0x080003e4                SysTick_Handler
+                0x080003e4                PVD_IRQHandler
+                0x080003e4                SDIO_IRQHandler
+                0x080003e4                TAMP_STAMP_IRQHandler
+                0x080003e4                PendSV_Handler
+                0x080003e4                NMI_Handler
+                0x080003e4                CAN2_RX1_IRQHandler
+                0x080003e4                EXTI3_IRQHandler
+                0x080003e4                TIM8_TRG_COM_TIM14_IRQHandler
+                0x080003e4                TIM1_UP_TIM10_IRQHandler
+                0x080003e4                TIM8_UP_TIM13_IRQHandler
+                0x080003e4                I2C3_ER_IRQHandler
+                0x080003e4                EXTI0_IRQHandler
+                0x080003e4                I2C2_EV_IRQHandler
+                0x080003e4                DMA1_Stream2_IRQHandler
+                0x080003e4                CAN1_RX0_IRQHandler
+                0x080003e4                FPU_IRQHandler
+                0x080003e4                OTG_HS_WKUP_IRQHandler
+                0x080003e4                UsageFault_Handler
+                0x080003e4                CAN2_SCE_IRQHandler
+                0x080003e4                DMA2_Stream2_IRQHandler
+                0x080003e4                SPI1_IRQHandler
+                0x080003e4                TIM6_DAC_IRQHandler
+                0x080003e4                TIM1_BRK_TIM9_IRQHandler
+                0x080003e4                DCMI_IRQHandler
+                0x080003e4                CAN2_RX0_IRQHandler
+                0x080003e4                DMA2_Stream3_IRQHandler
+                0x080003e4                USART6_IRQHandler
+                0x080003e4                USART3_IRQHandler
+                0x080003e4                CRYP_IRQHandler
+                0x080003e4                RTC_Alarm_IRQHandler
+                0x080003e4                CAN1_RX1_IRQHandler
+                0x080003e4                UART5_IRQHandler
+                0x080003e4                DMA2_Stream0_IRQHandler
+                0x080003e4                TIM4_IRQHandler
+                0x080003e4                I2C1_EV_IRQHandler
+                0x080003e4                DMA1_Stream6_IRQHandler
+                0x080003e4                DMA1_Stream1_IRQHandler
+                0x080003e4                UART4_IRQHandler
+                0x080003e4                TIM3_IRQHandler
+                0x080003e4                RCC_IRQHandler
+                0x080003e4                TIM8_BRK_TIM12_IRQHandler
+                0x080003e4                Default_Handler
+                0x080003e4                EXTI15_10_IRQHandler
+                0x080003e4                ADC_IRQHandler
+                0x080003e4                DMA1_Stream7_IRQHandler
+                0x080003e4                TIM7_IRQHandler
+                0x080003e4                CAN2_TX_IRQHandler
+                0x080003e4                TIM5_IRQHandler
+                0x080003e4                DMA2_Stream7_IRQHandler
+                0x080003e4                I2C3_EV_IRQHandler
+                0x080003e4                EXTI9_5_IRQHandler
+                0x080003e4                RTC_WKUP_IRQHandler
+                0x080003e4                ETH_WKUP_IRQHandler
+                0x080003e4                SPI2_IRQHandler
+                0x080003e4                OTG_HS_EP1_IN_IRQHandler
+                0x080003e4                MemManage_Handler
+                0x080003e4                DMA1_Stream0_IRQHandler
+                0x080003e4                CAN1_TX_IRQHandler
+                0x080003e4                SVC_Handler
+                0x080003e4                EXTI4_IRQHandler
+                0x080003e4                FSMC_IRQHandler
+                0x080003e4                ETH_IRQHandler
+                0x080003e4                OTG_HS_EP1_OUT_IRQHandler
+                0x080003e4                WWDG_IRQHandler
+                0x080003e4                TIM2_IRQHandler
+                0x080003e4                OTG_FS_WKUP_IRQHandler
+                0x080003e4                TIM1_TRG_COM_TIM11_IRQHandler
+                0x080003e4                OTG_HS_IRQHandler
+                0x080003e4                EXTI1_IRQHandler
+                0x080003e4                USART2_IRQHandler
+                0x080003e4                I2C2_ER_IRQHandler
+                0x080003e4                DMA2_Stream1_IRQHandler
+                0x080003e4                CAN1_SCE_IRQHandler
+                0x080003e4                DMA2_Stream4_IRQHandler
+                0x080003e4                BusFault_Handler
+                0x080003e4                USART1_IRQHandler
+                0x080003e4                OTG_FS_IRQHandler
+                0x080003e4                SPI3_IRQHandler
+                0x080003e4                DMA1_Stream4_IRQHandler
+                0x080003e4                I2C1_ER_IRQHandler
+                0x080003e4                DMA2_Stream6_IRQHandler
+                0x080003e4                DMA1_Stream3_IRQHandler
+ *(.text*)
+ *(.init)
+ *(.fini)
+ *(.rodata)
+ .rodata        0x080003ec        0x8 ../output/flash_TC_001.o
+ *(.rodata.*)
+                0x080003f4                . = ALIGN (0x4)
+                0x080003f4                _etext = .
+                0x080003f4                _la_data = LOADADDR (.data)
+
+.glue_7         0x080003f4        0x0
+ .glue_7        0x080003f4        0x0 linker stubs
+
+.glue_7t        0x080003f4        0x0
+ .glue_7t       0x080003f4        0x0 linker stubs
+
+.vfp11_veneer   0x080003f4        0x0
+ .vfp11_veneer  0x080003f4        0x0 linker stubs
+
+.v4_bx          0x080003f4        0x0
+ .v4_bx         0x080003f4        0x0 linker stubs
+
+.iplt           0x080003f4        0x0
+ .iplt          0x080003f4        0x0 ../output/flash.o
+
+.rel.dyn        0x080003f4        0x0
+ .rel.iplt      0x080003f4        0x0 ../output/flash.o
+
+.data           0x20000004        0x0 load address 0x080003f4
+                0x20000004                _sdata = .
+ *(.data)
+ .data          0x20000004        0x0 ../output/flash.o
+ .data          0x20000004        0x0 ../output/flash_TS_001.o
+ .data          0x20000004        0x0 ../output/flash_TC_001.o
+ .data          0x20000004        0x0 ../output/result.o
+ .data          0x20000004        0x0 ../output/stm32_startup.o
+ *(.data.*)
+                0x20000004                . = ALIGN (0x4)
+                0x20000004                _edata = .
+
+.igot.plt       0x20000004        0x0 load address 0x080003f4
+ .igot.plt      0x20000004        0x0 ../output/flash.o
+
+.bss            0x20000004        0x0 load address 0x080003f4
+                0x20000004                _sbss = .
+                0x20000004                __bss_start__ = _sbss
+ *(.bss)
+ .bss           0x20000004        0x0 ../output/flash.o
+ .bss           0x20000004        0x0 ../output/flash_TS_001.o
+ .bss           0x20000004        0x0 ../output/flash_TC_001.o
+ .bss           0x20000004        0x0 ../output/result.o
+ .bss           0x20000004        0x0 ../output/stm32_startup.o
+ *(.bss.*)
+                0x20000004                . = ALIGN (0x4)
+                0x20000004                _ebss = .
+                0x20000004                __bss_end__ = _ebss
+                0x20000004                . = ALIGN (0x4)
+                0x20000004                end = .
+                0x20000004                __end__ = .
+
+.result         0x20000000        0x4
+ *(.result)
+ .result        0x20000000        0x4 ../output/result.o
+                0x20000000                u32Result
+LOAD ../output/flash.o
+LOAD ../output/flash_TS_001.o
+LOAD ../output/flash_TC_001.o
+LOAD ../output/result.o
+LOAD ../output/stm32_startup.o
+OUTPUT(../output/flash.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x00000000      0x5e1
+ .debug_info    0x00000000      0x2ad ../output/flash.o
+ .debug_info    0x000002ad       0x58 ../output/flash_TS_001.o
+ .debug_info    0x00000305       0xe8 ../output/flash_TC_001.o
+ .debug_info    0x000003ed       0x6c ../output/result.o
+ .debug_info    0x00000459      0x188 ../output/stm32_startup.o
+
+.debug_abbrev   0x00000000      0x34f
+ .debug_abbrev  0x00000000      0x131 ../output/flash.o
+ .debug_abbrev  0x00000131       0x44 ../output/flash_TS_001.o
+ .debug_abbrev  0x00000175       0x99 ../output/flash_TC_001.o
+ .debug_abbrev  0x0000020e       0x5d ../output/result.o
+ .debug_abbrev  0x0000026b       0xe4 ../output/stm32_startup.o
+
+.debug_aranges  0x00000000       0xa0
+ .debug_aranges
+                0x00000000       0x20 ../output/flash.o
+ .debug_aranges
+                0x00000020       0x20 ../output/flash_TS_001.o
+ .debug_aranges
+                0x00000040       0x20 ../output/flash_TC_001.o
+ .debug_aranges
+                0x00000060       0x20 ../output/result.o
+ .debug_aranges
+                0x00000080       0x20 ../output/stm32_startup.o
+
+.debug_line     0x00000000      0x4e2
+ .debug_line    0x00000000      0x230 ../output/flash.o
+ .debug_line    0x00000230       0x76 ../output/flash_TS_001.o
+ .debug_line    0x000002a6       0xa7 ../output/flash_TC_001.o
+ .debug_line    0x0000034d       0x4a ../output/result.o
+ .debug_line    0x00000397      0x14b ../output/stm32_startup.o
+
+.debug_str      0x00000000      0x360
+ .debug_str     0x00000000      0x1db ../output/flash.o
+                                0x1fe (size before relaxing)
+ .debug_str     0x000001db       0x46 ../output/flash_TS_001.o
+                                0x117 (size before relaxing)
+ .debug_str     0x00000221       0x63 ../output/flash_TC_001.o
+                                0x189 (size before relaxing)
+ .debug_str     0x00000284       0x29 ../output/result.o
+                                 0xcc (size before relaxing)
+ .debug_str     0x000002ad       0xb3 ../output/stm32_startup.o
+                                0x1bc (size before relaxing)
+
+.comment        0x00000000       0x4d
+ .comment       0x00000000       0x4d ../output/flash.o
+                                 0x4e (size before relaxing)
+ .comment       0x0000004d       0x4e ../output/flash_TS_001.o
+ .comment       0x0000004d       0x4e ../output/flash_TC_001.o
+ .comment       0x0000004d       0x4e ../output/result.o
+ .comment       0x0000004d       0x4e ../output/stm32_startup.o
+
+.ARM.attributes
+                0x00000000       0x2e
+ .ARM.attributes
+                0x00000000       0x2e ../output/flash.o
+ .ARM.attributes
+                0x0000002e       0x2e ../output/flash_TS_001.o
+ .ARM.attributes
+                0x0000005c       0x2e ../output/flash_TC_001.o
+ .ARM.attributes
+                0x0000008a       0x2e ../output/result.o
+ .ARM.attributes
+                0x000000b8       0x2e ../output/stm32_startup.o
+
+.debug_frame    0x00000000      0x1f0
+ .debug_frame   0x00000000      0x10c ../output/flash.o
+ .debug_frame   0x0000010c       0x2c ../output/flash_TS_001.o
+ .debug_frame   0x00000138       0x34 ../output/flash_TC_001.o
+ .debug_frame   0x0000016c       0x38 ../output/result.o
+ .debug_frame   0x000001a4       0x4c ../output/stm32_startup.o

@@ -1,0 +1,3 @@
+Test suite	Test Discription	No. of Tests	Test's Result
+gpio_TS_001	Checking GPIO functions	Tests: 1	PASS
+gpio_TS_002	Checking GPIO functions	Tests: 1	FAIL

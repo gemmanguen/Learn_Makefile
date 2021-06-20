@@ -1,0 +1,10 @@
+
+TEST_DETAILS = Checking Flash_Write functions
+
+INC_DIRS = ../driver/$(MODULE)/include
+INC_DIRS += ../test/test_$(MODULE)/$(TEST)/test_suite/include
+INC_DIRS += ../test/test_$(MODULE)/$(TEST)/test_case/include
+
+SRC_DIRS = ../driver/$(MODULE)/source
+SRC_DIRS += ../test/test_$(MODULE)/$(TEST)/test_suite/source
+SRC_DIRS += ../test/test_$(MODULE)/$(TEST)/test_case/source
